@@ -1,11 +1,12 @@
 from json import dumps
 from random import uniform
 
+WEIGHTS_PATH: str = "weights_7"
 
-def setup_weights(ignore:list=[], amount=10):
+def setup_weights(ignore:list=[], amount=10, start=0):
     for index in range(amount):
         if index not in ignore:
-            with open(f"weights/weights{index}.json", "w") as f:
+            with open(f"{WEIGHTS_PATH}/weights{index}.json", "w") as f:
                 f.write(dumps(
         [ # calosc
             [ # i-0
@@ -24,9 +25,11 @@ def setup_weights(ignore:list=[], amount=10):
                 ] for _ in range(64)
             ]
         ],
-    indent=4)
+    indent=4
+    )
 )
+            print(f"{WEIGHTS_PATH}/weights{index}.json created!")
 
 
 if __name__ == "__main__":
-    setup_weights()
+    setup_weights(ignore=[], start = 0, amount=15)
